@@ -1,0 +1,141 @@
+
+
+<!--24   增加未支付订单付款，退款项目
+新增点击查看预览取件码事件-->
+<scroll-view scroll-x class="scroll_view">
+    <view class="tab">
+        <view class="tab_item {{ tabNow === index ? 'select' : '' }}" wx:for="{{ tabList }}" data-id="{{ index }}" wx:key="index" bindtap="selectTab">
+            {{ item }}
+        </view>
+    </view>
+</scroll-view>
+
+<view wx:if="{{ tabNow === 0 }}" class="body">
+    <view class="tips">
+        点击刷新~~~
+    </view>
+    <view class="order" wx:for="{{ myOrder }}" wx:key="index" >
+        <view class="order_top">
+            <view class="top_left">
+                <image src="{{ item.userInfo.avatarUrl }}"></image>
+                <view class="name">
+                    <text>{{ item.name }}</text>
+                    <text>{{ item.time }}</text>
+                </view>
+            </view>
+            <view class="{{ item.stateColor }}">
+                {{ item.state }}
+            </view>
+        </view>
+        <view class="order_content">
+            <view class="content">
+                {{ item.info }}
+            </view>
+            <view class="address">
+                {{ item.state !== '已完成' ? '目的地：' + item.address : '订单已完成，相关信息已隐藏' }}
+            </view>
+            <view class="address" wx:if="{{ openid === item.receivePerson }}">
+                {{ item.state === '已帮助' && item.name === '快递代取'  ? '取件码:' + item.expressCode : '' }}
+            </view>
+            <view class="address" bindtap="callPhone" data-phone="{{ item.phone }}">
+                {{ item.state !== '已完成' ? '联系方式：' + item.phone : '' }}
+            </view>
+        </view>
+        <view class="order_bottom">
+            <!-- <button type="warn" size="mini" style="margin-right: 20rpx;" bindtap="deleteOrder" data-id="{{ item._id }}" >删除</button> -->
+            <!-- <button wx:if="{{ item.codeImg }}" size="mini" type="primary" bindtap="showCodeImg" data-item="{{ item }}">取件码</button> -->
+             <button wx:if="{{ item.state == '待帮助' }}" size="mini" type="primary" bindtap="reFund" data-index="{{ index }}">退款</button> 
+            <view class="money">
+                金额 ￥{{ item.money }}
+            </view>
+            <view class="accept" wx:if="{{ item.state === '已帮助' }}" bindtap="toFinish" data-item="{{ item }}">
+                已完成
+            </view>
+        </view>
+    </view>
+</view>
+
+<view wx:if="{{ tabNow === 1 }}" class="body">
+    <view class="tips">
+        点击刷新~~~
+    </view>
+    <view class="order" wx:for="{{ OrdernoPay }}" wx:key="index">
+        <view class="order_top">
+            <view class="top_left">
+                <image src="{{ item.userInfo.avatarUrl }}"></image>
+                <view class="name">
+                    <text>{{ item.name }}</text>
+                    <text>{{ item.time }}</text>
+                </view>
+            </view>
+            <view class="{{ item.stateColor }}">
+                {{ item.state }}
+            </view>
+        </view>
+        <view class="order_content">
+            <view class="content">
+                {{ item.info }}
+            </view>
+            <view class="address">
+                {{ item.state !== '已完成' ? '目的地：' + item.address : '订单已完成，相关信息已隐藏' }}
+            </view>
+            <view class="address" wx:if="{{ openid === item.receivePerson }}">
+                {{ item.state === '已帮助' && item.name === '快递代取'  ? '取件码:' + item.expressCode : '' }}
+            </view>
+            <view class="address" bindtap="callPhone" data-phone="{{ item.phone }}">
+                {{ item.state !== '已完成' ? '联系方式：' + item.phone : '' }}
+            </view>
+        </view>
+        <view class="order_bottom">
+            <button type="warn" size="mini" style="margin-right: 20rpx;" bindtap="deleteOrder" data-id="{{ item._id }}">删除</button>
+            <!-- <button wx:if="{{ item.codeImg }}" size="mini" type="primary" bindtap="showCodeImg" data-item="{{ item }}">取件码</button> -->
+             <!-- <button size="mini" type="primary" wx:if="{{item.statu == '未支付'}}" bindtap="rePay" data-index="{{ index }}">付款</button>  -->
+            <view class="money">
+                金额 ￥{{ item.money }}
+            </view>
+            <!-- <view class="accept" wx:if="{{ item.state === '已帮助' }}" bindtap="toFinish" data-item="{{ item }}">
+                已完成
+            </view> -->
+        </view>
+    </view>
+</view>
+
+<view wx:if="{{ tabNow === 2 }}" class="body">
+    <view class="tips">
+        点击刷新~~~
+    </view>
+    <view class="order" wx:for="{{ OrderRetern }}" wx:key="index">
+        <view class="order_top">
+            <view class="top_left">
+                <image src="{{ item.userInfo.avatarUrl }}"></image>
+                <view class="name">
+                    <text>{{ item.name }}</text>
+                    <text>{{ item.time }}</text>
+                </view>
+            </view>
+            <view class="{{ item.stateColor }}">
+                {{ item.state }}
+            </view>
+        </view>
+        <view class="order_content">
+            <view class="content">
+                {{ item.info }}
+            </view>
+            <view class="address">
+                {{ item.state !== '已完成' ? '目的地：' + item.address : '订单已完成，相关信息已隐藏' }}
+            </view>
+            <view class="address" wx:if="{{ openid === item.receivePerson }}">
+                {{ item.state === '已帮助' && item.name === '快递代取'  ? '取件码:' + item.expressCode : '' }}
+            </view>
+            <view class="address" bindtap="callPhone" data-phone="{{ item.phone }}">
+                {{ item.state !== '已完成' ? '联系方式：' + item.phone : '' }}
+            </view>
+        </view>
+        <view class="order_bottom">
+            <button type="warn" size="mini" style="margin-right: 20rpx;" bindtap="deleteOrder" data-id="{{ item._id }}">删除</button>
+            <view class="money">
+                金额 ￥{{ item.money }}
+            </view>
+        </view>
+    </view>
+</view>

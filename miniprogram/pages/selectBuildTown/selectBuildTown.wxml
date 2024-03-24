@@ -1,0 +1,25 @@
+<!--pages/selectBuildTown/selectBuildTown.wxml-->
+<scroll-view scroll-x class="scroll-view">
+    <view class="tab">
+        <view class="tab_item {{ tabNow === index ? 'select' : '' }}" wx:for="{{ tabList }}" data-id="{{ index }}" wx:key="index" bindtap="selectTab">
+            {{ item }}
+        </view>
+
+    </view>
+</scroll-view>
+
+<!--相同页面下选择展示第几个tab-->
+
+<view wx:if="{{ tabNow === 0 }}" class="body">
+  <view class="item {{ buildNow === index ? 'select' : '' }}" wx:for="{{ buildList }}" data-id="{{ index }}" wx:key="index" bindtap="selectBuild">
+            {{ item }}
+        </view>
+</view>
+
+<view wx:if="{{ tabNow === 1 }}" class="body">
+  <view class="item {{ buildNow1 === index ? 'select' : '' }}" wx:for="{{ buildList1 }}" data-id="{{ index }}" wx:key="index" bindtap="selectBuild1">
+            {{ item }}
+        </view>
+</view>
+
+<view class="showAll">已显示全部</view>

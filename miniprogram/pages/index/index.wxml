@@ -1,0 +1,152 @@
+<view class="banner">                <!--轮播区-->
+    <swiper indicator-dots="true" autoplay="true" class="banner_body">
+        <swiper-item wx:for="{{ banner }}" wx:key="index" 
+        class="banner_item" bindtap="Goto">
+            <image src="{{ item }}" mode="widthFix"></image>
+        </swiper-item>
+    </swiper>
+</view>
+
+<view class="notice" bindtap="handleClickNotice">               <!--公告区-->
+    <image src="../../images/notic.png"></image>
+    <text>下单请添加客服wx:19108305710</text>
+</view>
+
+
+<view class="container">   <!--首页内容的大容器-->
+     <!--data-name="{{}}"传参 跳转选定页面-->
+    <view class="body" wx:for="{{ indexConfig}}" wx:key="index"  data-url="{{ item.url }}"   bindtap="toDetail">
+        <view class="icon">
+        <image src="{{ item.icon }}"></image>
+    </view>
+    <text> {{ item.text}}</text>
+    </view>
+</view>
+
+<scroll-view scroll-x class="scroll_view">
+    <view class="tab">
+        <view class="tab_item {{ tabNow === index ? 'select' : '' }}" wx:for="{{ tabList }}" data-id="{{ index }}" wx:key="index" bindtap="selectTab">
+            {{ item }}
+        </view>
+    </view>
+</scroll-view>
+
+<view wx:if="{{ tabNow === 0 }}" class="bod">
+    <view class="order" wx:for="{{ orderList }}" wx:if="{{ item.statu === '已支付' }}"  wx:key="index">
+        <view class="order_top">
+            <view class="top_left">
+                <image src="{{ item.userInfo.avatarUrl }}"></image>
+                <view class="name">
+                    <text>{{ item.name }}</text>
+                    <text>{{ item.time }}</text>
+                </view>
+            </view>
+            <view class="{{ item.stateColor }}">
+                {{ item.state }}
+            </view>
+        </view>
+        <view class="order_content">
+            <view class="content">
+                {{ item.info }}
+            </view>
+            <view class="address" wx:if="{{ openid === item.receivePerson }}">
+                {{ item.state !== '已完成' ? '目的地：' + item.address : '订单已完成，相关信息已隐藏' }}
+            </view>
+            <view class="address" wx:if="{{ openid === item.receivePerson }}">
+                {{ item.state === '已帮助' && item.name === '快递代取'  ? '取件码:' + item.expressCode : '' }}
+            </view>
+            <view class="address" bindtap="callPhone" data-phone="{{ item.phone }}" wx:if="{{ openid === item.receivePerson }}">
+                {{ item.state !== '已完成' ? '联系方式：' + item.phone : '' }}
+            </view>
+        </view>
+        <view class="order_bottom">
+            <button type="warn" size="mini" style="margin-right: 20rpx;" bindtap="deleteOrder" data-id="{{ item._id }}" wx:if="{{ openid === 'oIKI25MA6F45DjT6DnTxaWQMAMQI' }}">删除
+            </button>
+            <button wx:if="{{ item.codeImg }}" size="mini" type="primary" bindtap="showCodeImg" data-item="{{ item }}">查看取件码截图</button>
+            <view class="money">
+                金额 ￥{{ item.money }}
+            </view>
+            <view class="accept" wx:if="{{ item.state === '待帮助' }}" bindtap="orderReceive" data-item="{{ item }}">
+                接单
+            </view>
+        </view>
+    </view>
+</view>
+
+<view wx:if="{{ tabNow === 1 }}" class="bod">
+    <view class="order" wx:for="{{ rewardOrder }}" wx:if="{{ item.state === '待帮助' && item.statu === '已支付' }}"  wx:key="index">
+        <view class="order_top">
+            <view class="top_left">
+                <image src="{{ item.userInfo.avatarUrl }}"></image>
+                <view class="name">
+                    <text>{{ item.name }}</text>
+                    <text>{{ item.time }}</text>
+                </view>
+            </view>
+            <view class="{{ item.stateColor }}">
+                {{ item.state }}
+            </view>
+        </view>
+        <view class="order_content">
+            <view class="content">
+                {{ item.info }}
+            </view>
+            <view class="address" wx:if="{{ openid === item.receivePerson }}">
+                {{ item.state !== '已完成' ? '目的地：' + item.address : '订单已完成，相关信息已隐藏' }}
+            </view>
+            <view class="address" wx:if="{{ openid === item.receivePerson }}" wx:if="{{ openid === item.receivePerson }}">
+                {{ item.state === '已帮助' && item.name === '快递代取'  ? '取件码:' + item.expressCode : '' }}
+            </view>
+            <view class="address" bindtap="callPhone" data-phone="{{ item.phone }}" wx:if="{{ openid === item.receivePerson }}">
+                {{ item.state !== '已完成' ? '联系方式：' + item.phone : '' }}
+            </view>
+        </view>
+        <view class="order_bottom">
+            <button wx:if="{{ item.codeImg }}" size="mini" type="primary" bindtap="showCodeImg" data-item="{{ item }}">查看取件码截图</button>
+
+            <view class="money">
+                金额 ￥{{ item.money }}
+            </view>
+            <view class="accept" wx:if="{{ item.state === '待帮助' }}" bindtap="orderReceive" data-item="{{ item }}">
+                接单
+            </view>
+        </view>
+    </view>
+</view>
+
+<view wx:if="{{ tabNow === 2 }}" class="bod">
+    <view class="order" wx:for="{{ helpOrder }}" wx:if="{{ item.state === '已接单' || item.state === '已完成'}}" wx:key="index">
+        <view class="order_top">
+            <view class="top_left">
+                <image src="{{ item.userInfo.avatarUrl }}"></image>
+                <view class="name">
+                    <text>{{ item.name }}</text>
+                    <text>{{ item.time }}</text>
+                </view>
+            </view>
+            <view class="{{ item.stateColor }}">
+                {{ item.state }}
+            </view>
+        </view>
+        <view class="order_content">
+            <view class="content">
+                {{ item.info }}
+            </view>
+            <view class="address" wx:if="{{ openid === item.receivePerson }}">
+                {{ item.state !== '已完成' ? '目的地：' + item.address : '订单已完成，相关信息已隐藏' }}
+            </view>
+            <view class="address" wx:if="{{ openid === item.receivePerson }}">
+                {{ item.state === '已帮助' && item.name === '快递代取'  ? '取件码:' + item.expressCode : '' }}
+            </view>
+            <view class="address" bindtap="callPhone" data-phone="{{ item.phone }}" wx:if="{{ openid === item.receivePerson }}">
+                {{ item.state !== '已完成' ? '联系方式：' + item.phone : '' }}
+            </view>
+        </view>
+        <view class="order_bottom">
+            <view class="money">
+                金额 ￥{{ item.money }}
+            </view>
+        </view>
+    </view>
+</view>
+

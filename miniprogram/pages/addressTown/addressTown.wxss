@@ -1,0 +1,84 @@
+/* pages/addressTown/addressTown.wxss */
+/* pages/address/address.wxss */
+.body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.body .noneImg{
+    width: 200rpx;
+    height: 200rpx;
+}
+/*.body .noneData, .showAll 逗号代表后面样式与前面一致*/
+.body .noneData, .showAll{
+    color: #717171;
+    margin-top: 20rpx;
+    font-size: 28rpx;
+}
+
+.body .addBtn{
+    width: 90%;
+    background-color: #3d80d1;
+    color: #e0e9e7f3;
+    border-radius: 40rpx;
+    padding: 20rpx 0;
+    margin-top: 140rpx;
+    font-weight: 300;
+}
+
+.body .address{
+    width: 80%;
+    padding: 35rpx 25rpx;
+    background-color: #fff;
+    box-shadow: 0 0 20rpx #a1a1a1;
+    margin: 0 auto;
+    margin-top: 20rpx;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20rpx;
+}
+
+.body .address .address_bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30rpx;
+}
+
+.body .address .address_bottom .bottom_left{
+    display: flex;
+    align-items: center;
+    color: #1067D1;
+}
+
+.iconSize{
+    width: 35rpx;
+    height: 35rpx;
+}
+
+.body .address .address_bottom .bottom_right{
+    display: flex;
+}
+
+.body .address .address_bottom .bottom_right view{
+    display: flex;
+    align-items: center;
+    margin-left: 30rpx;
+}
+
+.body .address .address_bottom .bottom_right .delete{
+    color: red;
+}
+
+.ml{
+    margin-left: 18rpx;
+    font-size: 33rpx;
+    font-weight: 450;
+}
+
+.textSize{
+    font-size: 35rpx;
+    font-weight: 450;
+}

@@ -1,0 +1,9 @@
+<view class="logo">
+    <image src="cloud://cloud1-9gl9fqa7376cce6b.636c-cloud1-9gl9fqa7376cce6b-1313048280/Carousel area/team.jpg"></image>
+</view>
+
+<view class="desc">
+<view class="text">宗旨理念：您动动手指，由我们替您解决校园生活的烦恼！</view>
+<view class="text">团队简介：现团队成员全部为退役军人，您可以完全相信我们有能力将您的每一个需求解决到位</view>
+<view class="text">职责使命：对于每个物品，团队成员竭尽全力保证其完整性。若因我方责任导致的下单员的财产损失，我方将照价赔偿!</view>
+</view>

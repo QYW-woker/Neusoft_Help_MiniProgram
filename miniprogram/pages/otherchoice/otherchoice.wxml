@@ -1,0 +1,9 @@
+<!--pages/selectAddress/selectAddress.wxml-->
+<view class="body">
+    <view class="item" bindtap="selectSchool">
+        <text>校内</text>
+    </view>
+    <view class="item" bindtap="selectTown">
+        <text>小镇</text>
+    </view>
+</view>

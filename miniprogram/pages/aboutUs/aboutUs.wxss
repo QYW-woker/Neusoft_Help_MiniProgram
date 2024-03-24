@@ -1,0 +1,21 @@
+.logo{
+    background-color: white;
+    padding: 0;
+}
+
+.logo image{
+    flex: auto;
+    width: 100%;
+    height: 300rpx;
+}
+
+.desc{
+    background-color:whitesmoke;
+    padding: 5rpx;
+    margin-top: 5rpx;
+    font-size: 32rpx;
+}
+.desc .text{
+    margin-bottom: 18rpx;
+    background-color:#f1f5efe3 ;
+}
